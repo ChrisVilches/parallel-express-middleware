@@ -9,6 +9,14 @@
   },
   "author": "",
   "license": "ISC",
+  "keywords": [
+    "express",
+    "middleware",
+    "parallel",
+    "async",
+    "await",
+    "promise"
+  ],
   "dependencies": {
     "ramda": "^0.27.1"
   },
