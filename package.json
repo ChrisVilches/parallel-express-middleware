@@ -1,6 +1,6 @@
 {
   "name": "parallel-express-middleware",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Utility that assembles multiple Express middlewares into one, and executes them in parallel.",
   "main": "parallel.js",
   "scripts": {
