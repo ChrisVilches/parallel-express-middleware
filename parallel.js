@@ -1,25 +1,8 @@
 /**
- * This module exports a single function called 'parallel' which can be used as:
- * parallel(middleware1, middleware2, middleware3)
- *
- * It will execute the middlewares in parallel, in random order, and continue executing
- * the next middleware when all have finished.
- *
- * All errors are passed to the next middleware using next(err), including runtime exceptions
- * will be handled this way.
- *
- * Only middlewares that don't depend on each other should be used. Don't use middlewares that
- * modify the same data in res.locals if the order of execution is important, or if one middleware
- * needs data created by another middleware being executed in parallel.
- *
  * TODO: This should be configurable.
  * Rendering functions (e.g. render, json) are disabled during execution, because rendering
  * something while another middleware is executing may be a user made bug, so this is
  * avoided by raising an exception.
- *
- * TODO: Test (manually or otherwise) some other cases where it could fail.
- *
- * TODO: Deploy to NPM, to avoid having it here (and to share it).
  *
  */
 const R = require('ramda');
