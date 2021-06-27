@@ -18,7 +18,6 @@
     "promise"
   ],
   "dependencies": {
-    "ramda": "^0.27.1"
   },
   "devDependencies": {
     "chai": "^4.3.4",

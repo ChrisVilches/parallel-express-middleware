@@ -53,6 +53,16 @@ describe('parallel', () => {
     await expect([middlewareMock]).to.parallelize((new Error('hello world')).toString(), 0);
   });
 
+  it('should pass exceptions thrown inside promise/async middlewares to the next middleware', async () => {
+    const middlewareMock = (_req, _res, _next) => {
+      return new Promise(() => {
+        throw new Error('hello world');
+      });
+    };
+
+    await expect([middlewareMock]).to.parallelize((new Error('hello world')).toString(), 0);
+  });
+
   it('should pass error to next middleware when using a rendering function inside a middleware', async () => {
     const errString = "Function 'render' cannot be used while executing parallel middlewares.";
     const middlewareMock = (_req, res, _next) => {

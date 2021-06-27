@@ -5,8 +5,6 @@
  * avoided by raising an exception.
  *
  */
-const R = require('ramda');
-
 const DISABLED_RENDER_FUNCTIONS = true;
 const RENDER_FUNCTIONS = Object.freeze([
   'render',
@@ -43,7 +41,7 @@ const disableRenderFunctions = res => {
   return disabledFunctions;
 }
 
-const isPromise = R.is(Promise);
+const isPromise = x => typeof x == 'object' && 'then' in x && 'catch' in x;
 
 const patchedNext = (resolve, reject) => (...args) => {
   if(args.length > 0) return reject(args);
@@ -51,13 +49,13 @@ const patchedNext = (resolve, reject) => (...args) => {
 }
 
 const middlewareToPromise = (middleware, req, res) => {
-  return (new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     const result = middleware(req, res, patchedNext(resolve, reject));
 
     // In case the result of the middleware is a promise, catch the error, and use it
     // to reject the outer promise.
     if(isPromise(result)) result.catch(reject);
-  }));
+  });
 }
 
 const handleErrorsNext = next => err => {
@@ -65,13 +63,13 @@ const handleErrorsNext = next => err => {
 
   // Since errors can be thrown via runtime exception, or via executing next(err),
   // sometimes the error object is an array.
-  if(R.is(Array, err)) err = err[0];
+  if(Array.isArray(err)) err = err.filter(x => x)[0];
   next(err);
 }
 
 const parallel = (...middlewares) => {
   // Allow argument to be passed as comma separated values (m1, m2, m3) or as one array ([m1, m2, m3]).
-  if(middlewares.length == 1 && R.is(Array, middlewares[0])) middlewares = middlewares[0];
+  if(middlewares.length == 1 && Array.isArray(middlewares[0])) middlewares = middlewares[0];
   validateMiddlewares(middlewares);
 
   return (req, res, next) => {
