@@ -54,7 +54,7 @@ describe('parallel', () => {
   });
 
   it('should pass error to next middleware when using a rendering function inside a middleware', async () => {
-    const errString = 'Function render cannot be used while executing parallel middlewares.';
+    const errString = "Function 'render' cannot be used while executing parallel middlewares.";
     const middlewareMock = (_req, res, _next) => {
       res.render('index');
     };

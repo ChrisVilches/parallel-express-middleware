@@ -48,7 +48,7 @@ const validateMiddlewares = middlewares => {
 }
 
 const disableFunction = functionName => () => {
-  throw new Error(`Function ${functionName} cannot be used while executing parallel middlewares.`);
+  throw new Error(`Function '${functionName}' cannot be used while executing parallel middlewares.`);
 }
 
 const disableRenderFunctions = res => {
