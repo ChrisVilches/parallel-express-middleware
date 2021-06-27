@@ -1,0 +1,19 @@
+{
+  "name": "parallel-express-middleware",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node node_modules/mocha/bin/mocha",
+    "test-watch": "node node_modules/mocha/bin/mocha -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ramda": "^0.27.1"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^9.0.1"
+  }
+}
