@@ -1,8 +1,8 @@
 {
   "name": "parallel-express-middleware",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
-  "main": "index.js",
+  "main": "parallel.js",
   "scripts": {
     "test": "node node_modules/mocha/bin/mocha",
     "test-watch": "node node_modules/mocha/bin/mocha -w"
